@@ -26,4 +26,10 @@ export const register=async(req:Request,res:Response)=>{
     const [result]=await db.query('INSERT INTO users (email,password) VALUES (?,?)',[email,hashedPassword]);
     res.status(201).json({id:result.insertId,email});
 }
+export const logout=async(req:Request,res:Response)=>{
+    // Since JWT is stateless, we can't invalidate the token on the server side.
+    // The client should simply delete the token on logout.
+    
+    res.json({message:'Logged out successfully'});
+}
 
